@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Skip tracking links",
-  "short_name": "Skip tracking links",
+  "name": "Skip tracking",
+  "short_name": "Skip tracking",
   "version": "1.0",
   "description": "Replaces click-through tracking links by direct links. Open source: https://github.com/dlazerka/clickthrough",
   "icons": {
