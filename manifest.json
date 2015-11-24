@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "name": "Skip tracking links",
+  "short_name": "Skip tracking links",
+  "version": "1.0",
+  "description": "Replaces click-through tracking links by direct links. Open source: https://github.com/dlazerka/clickthrough",
+  "icons": {
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "permissions": [
+    "tabs"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  }
+}
