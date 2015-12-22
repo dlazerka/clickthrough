@@ -21,16 +21,22 @@
 
 'use strict';
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-	var re1 = /^https?:\/\/(www\.)?googleadservices\.com.*?&adurl=(http[^&]*)/;
-	var re2 = /^https?:\/\/(www\.)?clickserve\.dartsearch\.net.*?&ds_dest_url=(http[^&]*)/;
+	var catchers = [
+		/^https?:\/\/(www\.)?googleadservices\.com.*?&adurl=(http[^&]*)/,
+		/^https?:\/\/(www\.)?clickserve\.dartsearch\.net.*?&ds_dest_url=(http[^&]*)/,
+		/^https?:\/\/(www\.)?click\.icptrack\.com.*?&destination=(http[^&]*)/
+	];
 
-	var result = re1.exec(tab.url) || re2.exec(tab.url);
-	if (result) {
-		console.info('Detected click-through, redirecting...');
+	catchers.forEach(function(regexp) {
+		var match = regexp.exec(tab.url);
+		if (match) {
+			console.info('Detected click-through, redirecting...');
 
-		var newUrl = decodeURIComponent(result[2]);
-		chrome.tabs.update(tabId, {url: newUrl}, function() {
-			console.trace('Redirect successful');
-		});
-	}
+			var newUrl = decodeURIComponent(regexp[2]);
+			chrome.tabs.update(tabId, {url: newUrl}, function() {
+				console.trace('Redirect successful');
+			});
+		}
+	});
+
 });
