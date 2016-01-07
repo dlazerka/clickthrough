@@ -32,7 +32,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 		if (match) {
 			console.info('Detected click-through, redirecting...');
 
-			var newUrl = decodeURIComponent(regexp[2]);
+			var newUrl = decodeURIComponent(match[2]);
 			chrome.tabs.update(tabId, {url: newUrl}, function() {
 				console.trace('Redirect successful');
 			});
